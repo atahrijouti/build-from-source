@@ -19,4 +19,5 @@ jobs:
     - name: Build
       run: |
         git clone https://github.com/zed-industries/zed.git
+        cd zed
         cargo build --verbose
