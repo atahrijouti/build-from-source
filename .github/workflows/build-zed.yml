@@ -29,7 +29,7 @@ jobs:
         run: git clone https://github.com/zed-industries/zed.git
 
       - name: Update repo if exists
-        if: ${{ hashFiles('zed/') == !' }}
+        if: ${{ hashFiles('zed/') != '' }}
         run: |
           cd zed
           git pull
