@@ -22,7 +22,7 @@ jobs:
       #     name: zed-folder
 
       - name: Clone zed if folder doesn't exist
-        if: ${{hashFiles('zed/') != '' }}
+        if: ${{hashFiles('zed/') == '' }}
         run: git clone https://github.com/zed-industries/zed.git
 
       - name: Build Zed
