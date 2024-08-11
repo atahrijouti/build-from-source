@@ -32,6 +32,7 @@ jobs:
         if: ${{ hashFiles('zed/') != '' }}
         run: |
           cd zed
+          touch a
           git pull
 
       - name: Build Zed
