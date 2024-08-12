@@ -38,7 +38,9 @@ jobs:
 
       - name: Build Zed
         run: |
+          ls
           cd zed
+          ls
           cargo build --release
 
       - name: Upload binaries to release
