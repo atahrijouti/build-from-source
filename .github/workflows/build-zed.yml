@@ -2,8 +2,6 @@ name: Windows build for Zed
 
 on:
   push:
-    # tags:
-    # - "zed-[0-9]+"
     branches: ["main"]
 
 env:
