@@ -1,0 +1,13 @@
+name: Daily release
+on:
+  push:
+    tags:
+      - "[0-9]+"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: check ref
+        run: echo ${{ github.ref }}
