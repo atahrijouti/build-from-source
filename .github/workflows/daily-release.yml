@@ -14,11 +14,11 @@ jobs:
       - name: Get Date
         id: date
         run: |
-          echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
+          echo "date=$(/bin/date -u "+%Y%m%d%H%M%S")" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
           name: ${{ steps.date.outputs.date }}
-          tag_name: auto
+          tag_name: daily-release-${{ steps.date.outputs.date }}
