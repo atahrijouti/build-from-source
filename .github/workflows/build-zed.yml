@@ -3,7 +3,7 @@ name: Windows build for Zed
 on:
   push:
     tags:
-      - "zed-[0-9]+"
+      - "daily-release-[0-9]+"
 
 env:
   CARGO_TERM_COLOR: always
@@ -13,12 +13,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Get Date
-        id: get-date
-        run: |
-          echo "date=$(/bin/date -u "+%Y%m%d")" >> $GITHUB_OUTPUT
-        shell: bash
-
       - name: Checkout sources
         uses: actions/checkout@v4
 
