@@ -19,3 +19,4 @@ jobs:
         with:
           name: ${{ steps.date.outputs.date }}
           tag_name: daily-release-${{ steps.date.outputs.date }}
+          token: ${{ secrets.RELEASE_TOKEN }}
