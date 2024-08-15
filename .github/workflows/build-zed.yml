@@ -16,33 +16,12 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
 
-      - name: Cache Zed folder
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            ./zed/
-          key: ${{ runner.os }}-zed
-
       - name: Clone zed if folder doesn't exist
-        if: ${{ hashFiles('zed/') == '' }}
         run: git clone https://github.com/zed-industries/zed.git
-
-      - name: Update repo if exists
-        if: ${{ hashFiles('zed/') != '' }}
-        run: |
-          cd zed
-          ls
-          git pull
 
       - name: Build Zed
         run: |
-          ls
           cd zed
-          ls
           cargo build --release
 
       - name: Upload binaries to release
