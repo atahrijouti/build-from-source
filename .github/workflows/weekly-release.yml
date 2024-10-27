@@ -1,0 +1,23 @@
+name: Weekly release
+on:
+  schedule:
+    - cron: "0 3 * * 0"
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Compute release name and tag
+        id: meta
+        run: |
+          echo "name=$(/bin/date -u "+Week %V Release (%Y)")" >> $GITHUB_OUTPUT
+          echo "tag_name=$(/bin/date -u "+weekly-release-%V-%Y")" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.meta.outputs.name }}
+          tag_name: ${{ steps.meta.outputs.tag_name }}
+          token: ${{ secrets.RELEASE_TOKEN }}
