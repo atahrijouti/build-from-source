@@ -8,15 +8,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Get Date
-        id: date
+      - name: Compute release name and tag
+        id: meta
         run: |
-          echo "date=$(/bin/date -u "+%Y%m%d%H%M%S")" >> $GITHUB_OUTPUT
+          echo "name=$(/bin/date -u "+Daily Release %Y-%m-%d")" >> $GITHUB_OUTPUT
+          echo "tag_name=$(/bin/date -u "+daily-release-%Y%m%d")" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          name: ${{ steps.date.outputs.date }}
-          tag_name: daily-release-${{ steps.date.outputs.date }}
+          name: ${{ steps.meta.outputs.name }}
+          tag_name: ${{ steps.meta.outputs.tag_name }}
           token: ${{ secrets.RELEASE_TOKEN }}
