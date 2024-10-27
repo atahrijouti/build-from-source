@@ -12,7 +12,7 @@ jobs:
         id: meta
         run: |
           echo "name=$(/bin/date -u "+Week %V Release (%Y)")" >> $GITHUB_OUTPUT
-          echo "tag_name=$(/bin/date -u "+weekly-release-%V-%Y")" >> $GITHUB_OUTPUT
+          echo "tag_name=$(/bin/date -u "+weekly-release-%V%Y")" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Release
