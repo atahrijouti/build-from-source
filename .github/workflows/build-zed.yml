@@ -3,7 +3,7 @@ name: Windows build for Zed
 on:
   push:
     tags:
-      - "daily-release-[0-9]+"
+      - "weekly-release-[0-9]+"
 
 env:
   CARGO_TERM_COLOR: always
