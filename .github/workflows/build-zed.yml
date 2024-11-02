@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "weekly-release-[0-9]+"
+      - "manual-release-zed-[0-9]+"
 
 env:
   CARGO_TERM_COLOR: always
