@@ -25,23 +25,23 @@ jobs:
         $cores = (Get-CimInstance -ClassName Win32_ComputerSystem).NumberOfLogicalProcessors
         echo "CPU_CORES=$cores" >> $env:GITHUB_ENV
 
-      - name: Checkout sources
-        uses: actions/checkout@v4
+    - name: Checkout sources
+      uses: actions/checkout@v4
 
-      - name: Clone zed if folder doesn't exist
-        run: git clone https://github.com/zed-industries/zed.git
+    - name: Clone zed if folder doesn't exist
+      run: git clone https://github.com/zed-industries/zed.git
 
-      - name: Build Zed
-        run: |
-          cd zed
-          cargo build --release --jobs $env:CPU_CORES --verbose
+    - name: Build Zed
+      run: |
+        cd zed
+        cargo build --release --jobs $env:CPU_CORES --verbose
       env:
         CARGO_BUILD_JOBS: ${{ env.CPU_CORES }}
 
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./zed/target/release/zed.exe
-          tag: ${{ github.ref_name }}
-          overwrite: true
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./zed/target/release/zed.exe
+        tag: ${{ github.ref_name }}
+        overwrite: true
