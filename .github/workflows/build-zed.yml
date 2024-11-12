@@ -21,7 +21,6 @@ jobs:
       shell: pwsh
 
     - name: Set core count
-      if: steps.check_build.outputs.BUILD_NEEDED == 'true'
       run: |
         $cores = (Get-CimInstance -ClassName Win32_ComputerSystem).NumberOfLogicalProcessors
         echo "CPU_CORES=$cores" >> $env:GITHUB_ENV
