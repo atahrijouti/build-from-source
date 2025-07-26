@@ -3,7 +3,9 @@ name: Windows build for Zed
 on:
   push:
     tags:
-      - "weekly-release-[0-9]+"
+      # Zed is soon to become ready on windows. msys2 already provides a package for it.
+      # Keeping to bellow line for documentation only
+      # - "weekly-release-[0-9]+"
       - "manual-release-zed-[0-9]+"
 
 env:
